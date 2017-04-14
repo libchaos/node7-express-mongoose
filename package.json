@@ -1,0 +1,45 @@
+{
+  "name": "express-mongoose-node7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "start:debug": "cross-env DEBUG=dev:* yarn start",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha  server/tests/ --ui bdd --reporter spec --colors --recursive",
+    "test:watch": "yarn test -- --watch",
+    "test:coverage": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover _mocha -- --ui bdd --reporter spec --colors  server/tests/ --recursive",
+    "test:check-coverage": "yarn test:coverage && istanbul check-coverage",
+    "report-coverage": "coveralls < ./coverage/lcov.info"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
+    "cors": "^2.8.3",
+    "debug": "^2.6.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-validation": "^1.0.2",
+    "express-winston": "^2.3.0",
+    "helmet": "^3.5.0",
+    "http-status": "^1.0.1",
+    "joi": "^10.4.1",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.4",
+    "morgan": "^1.8.1",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
+    "cross-env": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0",
+    "supertest-as-promised": "^4.0.2"
+  }
+}
