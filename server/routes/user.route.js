@@ -3,11 +3,12 @@ const validate = require('express-validation');
 const paramValidation = require('../../config/param-validation');
 const userCtrl = require('../controllers/user.controller');
 const wrapRouter = require('express-router-async-support').wrapRouter;
+const requireAuth = require('../middlewares/requireAuth');
 
 const router = wrapRouter(express.Router());
 
 router.route('/')
-  .get(userCtrl.list)
+  .get(requireAuth, userCtrl.list)
   .post(validate(paramValidation.createUser), userCtrl.create)
 
 

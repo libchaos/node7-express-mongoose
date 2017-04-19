@@ -12,7 +12,8 @@ const router = wrapRouter(express.Router());
 router.route('/login')
   .post(validate(paramValidation), authCtrl.login);
 
-
+router.route('/register')
+  .post(validate(paramValidation), authCtrl.register);
 
 router.route('/random-number')
   .get(expressJWT({ secret: config.jwtSecret }), authCtrl.getRandomNumber);

@@ -4,6 +4,10 @@
     "react"
   ],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
   "rules": {
     "react/jsx-filename-extension": [
       1,

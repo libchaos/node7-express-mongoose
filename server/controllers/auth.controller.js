@@ -2,18 +2,20 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 const config = require('../../config/config');
-
-const user = {
-  username: 'react',
-  password: 'express',
-};
+const User = require('../models/user.model');
 
 
-function login(req, res, next) {
-  if(req.body.username === user.username && req.body.password === user.password) {
-    const token = jwt.sign({
-      username: user.username
-    }, config.jwtSecret);
+const generateToken = function(user) {
+  return jwt.sign(user, config.jwtSecret, {
+    expiresIn: 3600,
+  })
+}
+
+
+async function login(req, res, next) {
+  const user = await User.findOne({username: req.body.username});
+  if(user) {
+    const token = generateToken({username: user.username})
     return res.json({
       token,
       username: user.username
@@ -23,6 +25,22 @@ function login(req, res, next) {
   return next(err);
 }
 
+async function register(req, res, next) {
+  try {
+    const user = await new User({username: req.body.username, mobileNumber: 12345678901});
+    user.save();
+    if (user) {
+      const token = generateToken({username: user.username})
+      return res.json({
+        token,
+        username: user.username
+      });
+    }
+  } catch(err) {
+    next(err)
+  }
+}
+
 function getRandomNumber(req, res) {
   return res.json({
     user: req.user,
@@ -30,4 +48,4 @@ function getRandomNumber(req, res) {
   });
 }
 
-module.exports = {login, getRandomNumber}
+module.exports = {login, getRandomNumber, register}

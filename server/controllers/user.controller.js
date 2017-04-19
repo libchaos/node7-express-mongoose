@@ -1,6 +1,7 @@
 const User = require('../models/user.model')
 
 async function load(req, res, next, id) {
+
   try {
     const user = await User.get(id);
     req.user = user;
@@ -28,18 +29,26 @@ async function create(req, res, next) {
 }
 
 async function update(req, res, next) {
-  const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
+  try {
+    const user = req.user;
+    user.username = req.body.username;
+    user.mobileNumber = req.body.mobileNumber;
 
-  const user_saveed = await user.save();
-  res.json(user_saveed);
+    const user_saveed = await user.save();
+    res.json(user_saveed);
+  } catch(err) {
+    next(err);
+  }
 }
 
 async function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query;
-  const users = await User.list({ limit, skip });
-  res.json(users);
+  try {
+    const { limit = 50, skip = 0 } = req.query;
+    const users = await User.list({ limit, skip });
+    res.json(users);
+  } catch(err) {
+    next(err);
+  }
 }
 
 async function remove(req, res, next) {
