@@ -1,14 +1,13 @@
-const express = require('express')
+const express =require('express')
+const wrapRouter = require('express-router-async-support').wrapRouter;
+const userRoutes = require('./user.route');
+const authRoutes = require('./auth.route');
+const router = wrapRouter(express.Router());
 
 
 
-const router = express.Router()
 
+router.use('/users', userRoutes);
+router.use('/auth', authRoutes);
 
-router.get('/', (req, res) => {
-  res.send('ok')
-})
-
-
-
-module.exports = router
+module.exports = router;
