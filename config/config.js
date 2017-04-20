@@ -19,7 +19,12 @@ const envVarsSchema = Joi.object({
   MONGO_HOST: Joi.string().required()
     .description('MongoDB host url'),
   MONGO_PORT: Joi.number()
-    .default(27017)
+    .default(27017),
+  REDIS_HOST: Joi.string().required
+    .description('Redis host url'),
+  REDIS_PORT: Joi.number().required()
+    .default(6379),
+  PREFIX: Joi.string().description('redis prefix')
 }).unknown()
 .required()
 
