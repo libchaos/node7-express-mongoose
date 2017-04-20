@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const util = require('util')
 const http = require('http')
 const Session = require('express-session')
-const socketIO = require('socket.io')
+const SocketIO = require('socket.io')
 const redis = require('redis')
 const connectRedis = require('connect-redis')
 
@@ -57,8 +57,8 @@ const dbSession = new RedisStore({
 const session = new Session({
   resave: true,
   saveUninitialized: true,
-  key: config.session.key,
-  secret: config.session.secret,
+  key: 'ABCED',
+  secret: '12345', //config.session.secret,
   store: dbSession,
 })
 app.use(session)
