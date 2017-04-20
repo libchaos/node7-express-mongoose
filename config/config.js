@@ -36,7 +36,12 @@ const config = {
   jwtSecret: envVars.JWT_SECRET,
   mongo: {
     host: envVars.MONGO_HOST,
-    port: envVars.MONGO_PORT
+    port: envVars.MONGO_PORT,
+  },
+  redis: {
+    host: envVars.REDIS_HOST,
+    port: envVars.REDIS_PORT,
+    prefix: envVars.PREFIX,
   }
 }
 

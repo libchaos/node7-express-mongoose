@@ -33,6 +33,9 @@ app.use(helmet())
 app.use(cors())
 
 
+
+
+
 //enable detailed API loggin in dev env
 
 if (config.env === 'development') {
