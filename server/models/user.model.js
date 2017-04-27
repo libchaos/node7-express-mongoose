@@ -26,16 +26,21 @@ UserSchema.statics = {
     return this.findById(id)
       .exec()
       .then((user) => {
-        if(user) {
+        if (user) {
           return user;
         }
         const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       })
   },
-  list({skip = 0, limit=50} = {}) {
+  list({
+    skip = 0,
+    limit = 50
+  } = {}) {
     return this.find()
-      .sort({ createAt: -1 })
+      .sort({
+        createAt: -1
+      })
       .skip(+skip)
       .limit(+limit)
       .exec();

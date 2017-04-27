@@ -16,7 +16,9 @@ router.route('/register')
   .post(validate(paramValidation), authCtrl.register);
 
 router.route('/random-number')
-  .get(expressJWT({ secret: config.jwtSecret }), authCtrl.getRandomNumber);
+  .get(expressJWT({
+    secret: config.jwtSecret
+  }), authCtrl.getRandomNumber);
 
 
 

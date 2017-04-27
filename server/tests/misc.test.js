@@ -1,6 +1,9 @@
 const request = require('supertest-as-promised')
 const httpStatus = require('http-status')
-const {config, expect} = require('chai')
+const {
+  config,
+  expect
+} = require('chai')
 const app = require('../../index')
 
 
@@ -17,7 +20,7 @@ describe('## misc', () => {
           done()
         })
         .catch(done)
-      })
+    })
   })
   describe('# GET /api/404', () => {
     it('should return 404 not found', (done) => {
@@ -32,8 +35,3 @@ describe('## misc', () => {
     })
   })
 })
-
-
-
-
-

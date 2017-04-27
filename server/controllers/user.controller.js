@@ -6,7 +6,7 @@ async function load(req, res, next, id) {
     const user = await User.get(id);
     req.user = user;
     next()
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
@@ -19,11 +19,11 @@ async function get(req, res) {
 async function create(req, res, next) {
   try {
     const user = await new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber,
+      username: req.body.username,
+      mobileNumber: req.body.mobileNumber,
     }).save();
     res.json(user);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
@@ -36,17 +36,22 @@ async function update(req, res, next) {
 
     const user_saveed = await user.save();
     res.json(user_saveed);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
 
 async function list(req, res, next) {
   try {
-    const { limit = 50, skip = 0 } = req.query;
-    const users = await User.list({ limit, skip });
+    const {
+      limit = 50, skip = 0
+    } = req.query;
+    const users = await User.list({
+      limit,
+      skip
+    });
     res.json(users);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
@@ -55,7 +60,7 @@ async function remove(req, res, next) {
   try {
     const deleteUser = await user.remove();
     res.json(deleteUser);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }

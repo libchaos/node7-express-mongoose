@@ -1,4 +1,4 @@
-const express =require('express')
+const express = require('express');
 const wrapRouter = require('express-router-async-support').wrapRouter;
 const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');

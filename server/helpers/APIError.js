@@ -15,7 +15,7 @@ class ExtendableError extends Error {
     this.isPublic = isPublic
     this.isOperational = true // this is required since bluebird4 dose not append it anymore
     Error.captureStackTrace(this, this.constructor.name)
-  } 
+  }
 }
 
 
